@@ -1,9 +1,20 @@
+* {
+    margin: 0px;
+    padding: 1px;
+}
+
+.titu {
+    color: aliceblue;
+}
+
+/* Barra navegacion */
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    display: flex;
   }
   
   li {
@@ -18,7 +29,6 @@ ul {
     text-decoration: none;
   }
   
-  /* Change the link color to #111 (black) on hover */
   li a:hover {
     background-color: #111;
   }
@@ -26,3 +36,4 @@ ul {
   .active {
     background-color: #04AA6D;
   }
+  /* fin barra navegacion */
