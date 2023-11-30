@@ -27,11 +27,10 @@
   text-decoration: none;
 }
 .barra li a:hover {
-  background-color: beige;
+  background-color: rgb(220, 187, 250);
 }
 .active {
   background-color: blueviolet;
-  color: white;
 }
 /* fin barra navegacion */
 ul.parad {
