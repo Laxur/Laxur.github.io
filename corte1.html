@@ -10,7 +10,7 @@
 
 <body>
     <ul class="barra">
-        <h1 style="margin-right: auto;" class="titu">Bienvenido!</h1>
+        <h1 style="margin-right: auto;" class="titu">Lenguajes de Programacion</h1>
         <li style="float:right"><a href="corte1.html">Corte 1</a></li>
         <li style="float:right"><a href="corte2.html">Corte 2</a></li>
         <li style="float:right"><a href="corte3.html">Corte 3</a></li>
@@ -51,7 +51,61 @@
             <p> Descripción: Utiliza estructuras de control de flujo como bucles y condicionales
                 para organizar el código en bloques más manejables.
                 Ejemplo: Lenguajes como C y Pascal favorecen la programación estructurada.</p>
+                <center>
+                    <h2 style="color: #800080">Ejemplo Funcion pura</h2>
+                </center>
+                        <pre>
+                            <code>
+def OtorgarPrestamo( pSalario, pAntiguedad, psaldoBancario, 
+pReporte, pValorSolicitado):
+    if pSalario > 1200000 and pAntiguedad > 2 and 
+    pValorSolicitado <= psaldoBancario and pReporte == False:
+        return True
+    else:
+        return False
+                                
+#Una funcion pura en python (no modifica el parametro de entrada, crea una nueva variable)
+#enrada: una lista de enteros
+#salida: una COPIA de la lista de entrada, con sus valores ^2
+def unaFuncionPura(listaDeEntrada):
+#lista vacia en python
+    listasalida = [] 
+#iterado en una lista:
+    for x in listaDeEntrada: 
+# agregando un elemento a una lista:
+listasalida.append(x**2)
+    return listasalida
+                            
+def pow2(var):
+    return var**2
+                            
+def pow3(var):
+    return var**3
+                            
+def convertirAMayusculas(listaEntrada):
+    listaNueva = []
+    for nombre in listaEntrada:
+        listaNueva.append(str(nombre).upper())
+         return listaNueva
+                            
+def convertirAMinusculas(listaEntrada):
+    listaNueva = []
+    for nombre in listaEntrada:
+        listaNueva.append(str(nombre).lower())
+        return listaNueva
+                            
+def mayus(item):
+    return(str(item).upper())
+                            </code>
+                        </pre>
+                        <p>Para que una función sea considerada pura en Python, debe cumplir con dos condiciones:</p>
 
+                        <p>No modificar ninguno de sus parámetros de entrada</p>
+                        <p>No depender de ningún estado externo, solo de sus parámetros de entrada</p>
+                        <p>En este caso, la función OtorgarPrestamo() si cumple con ambos requisitos:</p>
+                            
+                        <p>No modifica ninguno de los parámetros de entrada pSalario, pAntiguedad, etc. Solo los lee.</p>
+                        <p>Tampoco depende de ningún estado externo o global, solo evalua los valores pasados como parámetros para decidir el resultado.</p>
         </div>
 
         <div class="info2">
@@ -103,16 +157,10 @@
                     <p>reduce toma una función y una secuencia iterable, y aplica la función acumulativa a los elementos
                         de la secuencia, reduciéndolos a un solo valor</p>
                 </li>
-
             </ul>
-        </div>
-    </div>
-    <div class="padre">
-        <div class="info">
-
-        </div>
-        <div class="ejemplo">
-
+            <center>
+                <h2 style="color: #800080">Ejemplo Reduce</h2>
+            </center>
             <pre>
                 <code>
 from functools import reduce
@@ -139,8 +187,6 @@ result = reduce(lambda x,y:x+y, terms2)
 print(f"número de euler aproximado con {num_terms} términos: {result}")
                 </code>
             </pre>
-
-
         </div>
     </div>
 </body>

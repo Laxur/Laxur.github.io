@@ -10,23 +10,123 @@
 
 <body>
     <ul class="barra">
-        <h1 style="margin-right: auto;" class="titu">Bienvenido!</h1>
+        <h1 style="margin-right: auto;" class="titu">Lenguajes de Programacion</h1>
         <li style="float:right"><a href="corte1.html">Corte 1</a></li>
         <li style="float:right"><a href="corte2.html">Corte 2</a></li>
         <li style="float:right"><a href="corte3.html">Corte 3</a></li>
         <li style="float:right"><a class="active" href="index.html">Inicio</a></li>
     </ul>
-    <div>
+    <div class="padre">
         <div class="info1">
-            <h2 style="margin-bottom: 10px;">Paradigmas de programacion</h2>
+            <h2 style="margin-bottom: 10px;">Hilos</h2>
             <ul class="parad">
-                <li>Programacion orientada a objetos</li>
-                <li>Programacion Imperativa</li>
-                <li>Programacion Funcional</li>
-                <li>Programacion Declarativa</li>
-                <li>Programacion Estructural</li>
-            </ul>
+                <li>Un hilo es un proceso ligero que vive dentro de un proceso Java y comparte recursos con otros hilos.</li>
+                <li>Se crean extendiendo Thread o implementando Runnable. El método run() contiene el código que se ejecutará en el hilo.</li>
+                <li>Los hilos comparten recursos en memoria, por lo que requieren mecanismos de sincronización como locks para evitar condiciones de carrera.</li>
+                <li>Los locks adquiridos por un hilo deben liberarse por el mismo hilo en algún punto, de lo contrario se pueden producir deadlocks.</li>
 
+                <li>Start() inicia la ejecución del hilo. Sleep() lo pausa por un tiempo determinado.</li>
+                <li>Join() permite que un hilo espere a que otro termine antes de continuar.</li>
+                <li>Interrupts son una forma simple de interacción entre hilos.</li>
+                <li>Los métodos wait() y notify()/notifyAll() permiten dormir y despertar hilos en un monitor de objeto de manera sincronizada.</li>
+            </ul>
+            <center>
+                <h2 style="color: #800080">Creacion Hilos</h2>
+            </center>
+                    <pre>
+                        <code>
+import threading
+
+def mi_hilo(num):
+    print('Soy el hilo ', num)
+                            
+for i in range(5):
+    h = threading.Thread(target=mi_hilo, args=(i,))
+    h.start()
+                        </code>
+                    </pre>
+                <center>
+                    <h2 style="color: #800080">Espera/Notificación entre hilos:</h2>
+                </center>
+                        <pre>
+                            <code>
+import threading 
+import time
+                               
+                                class Productor:
+                                    def run(self):
+                                        for i in range(5):
+                                            event.set() # Despierta consumidor
+                                            time.sleep(1)  
+                                        event.set() # Despierta consumidor
+                                                 
+                                class Consumidor:
+                                    def run(self):
+                                        while True:
+                                            event.wait() # Espera la señal
+                                            print('Recibí evento ', event.isSet())  
+                                
+                                event = threading.Event()
+                                p = Productor()
+                                c = Consumidor()
+                                
+                                t1 = threading.Thread(target=p.run)
+                                t2 = threading.Thread(target=c.run)
+                                
+                                t1.start()  
+                                t2.start()
+                            </code>
+                        </pre>
+        </div>
+        <div class="info2">
+            <h2 style="margin-bottom: 10px;">Sincronizacion</h2>
+            <ul class="parad">
+                <li>Permite exclusión mutua entre hilos mediante bloques synchronized o métodos sincronizados.</li>
+                <li>Solo un hilo puede ejecutar ese código a la vez, evitando condiciones de carrera.</li>
+                <li>Wait() y notify() permiten dormir y despertar hilos en un monitor de objeto.</li>
+                <li>Deben usarse cuidadosamente para evitar deadlocks.</li>
+                <li>Debe minimizarse el tiempo dentro de bloques synchronized y el número de locks para mejorar performance y escalabilidad.</li>
+            </ul>
+            <h2 style="margin-bottom: 10px;">Recomendaciones</h2>
+            <ul class="parad">
+                <li>Usar objetos inmutables cuando sea posible.</li>
+                <li>Reducir contención de locks con técnicas como lock splitting y striping.</li>
+                <li>Preferir operaciones atómicas sobre sincronización cuando sea aplicable.</li>
+                <li>Deben usarse cuidadosamente para evitar deadlocks.</li>
+            </ul>
+            <center>
+                <h2 style="color: #800080">Sincronización con locks:</h2>
+            </center>
+            <div class="padre">
+                <div class="info1">
+                    <pre>
+                        <code>
+                            import threading
+
+                            saldo = 0
+                            lock = threading.Lock()
+                            
+                            def sumar_100():
+                                global saldo 
+                                for i in range(100):
+                                    lock.acquire()
+                                    saldo += 1
+                                    lock.release()
+                            
+                            h1 = threading.Thread(target=sumar_100) 
+                            h2 = threading.Thread(target=sumar_100)
+                            
+                            h1.start()
+                            h2.start()
+                            
+                            h1.join()
+                            h2.join()
+                            
+                            print(saldo)
+                        </code>
+                    </pre>
+                </div>
+        </div>
         </div>
     </div>
 </body>
