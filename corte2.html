@@ -16,18 +16,289 @@
         <li style="float:right"><a href="corte3.html">Corte 3</a></li>
         <li style="float:right"><a class="active" href="index.html">Inicio</a></li>
     </ul>
-    <div>
-        <div class="info1">
-            <h2 style="margin-bottom: 10px;">Paradigmas de programacion</h2>
+    <div class="padre">
+        <div class="info1c2">
+            <h2 style="margin-bottom: 10px;">Patrones de Diseño</h2>
             <ul class="parad">
-                <li>Programacion orientada a objetos</li>
-                <li>Programacion Imperativa</li>
-                <li>Programacion Funcional</li>
-                <li>Programacion Declarativa</li>
-                <li>Programacion Estructural</li>
+                <li style="margin-bottom: 10px;">El nombre del patrón sirve como una forma de describir de manera
+                    concisa un problema de diseño, sus soluciones y consecuencias</li>
+                <li style="margin-bottom: 10px;">La sección del problema describe cuándo aplicar el patrón. Proporciona
+                    una explicación del problema y su contexto.A veces, la sección del problema incluye una lista de
+                    condiciones que deben cumplirse antes de aplicar el patrón.</li>
+                <li style="margin-bottom: 10px;">La sección de la solución describe los elementos que componen el
+                    diseño, sus relaciones, responsabilidades y colaboraciones. el patrón ofrece una descripción
+                    abstracta de un problema de diseño y cómo una disposición general de elementos (clases y objetos en
+                    nuestro caso) lo resuelve.</li>
+                <li style="margin-bottom: 10px;">La sección de las consecuencias aborda los resultados y compensaciones
+                    de aplicar el patrón. Las consecuencias de un patrón incluyen su impacto en la flexibilidad,
+                    extensibilidad o portabilidad de un sistema. Enumerar explícitamente estas consecuencias ayuda a
+                    comprender y evaluarlas.</li>
             </ul>
+            <hr>
+            <center>
+                <h2 style="color: #2ecc71;">Patrones Creacionales</h2>
+            </center>
+            <div class="padre">
+                <div class="info1">
+                    <img src="IMG/singleton.png">
+                    <img src="IMG/factory-method.png" style="margin-top: 20px;">
+                    <img src="IMG/abstract-factory.png">
+                    <img src="IMG/builder.png">
+                </div>
+                <div>
+                    <h3>Singleton</h3>
+                    <p>Garantiza que una clase tenga solo una instancia y proporciona un punto de acceso global a ella.
+                    </p>
+                    <h3 style="margin-top: 50px;">Factory Method</h3>
+                    <p>Define una interfaz para crear un objeto, pero deja que las subclases alteren el tipo de objetos
+                        que se crearán.</p>
+                    <h3 style="margin-top: 30px;">Abstract Factory</h3>
+                    <p>Proporciona una interfaz para crear familias de objetos relacionados o dependientes sin
+                        especificar sus clases concretas.</p>
+                    <h3 style="margin-top: 10px;">Builder</h3>
+                    <p>Separar la construcción de un objeto complejo de su representación, de modo que el mismo proceso
+                        de construcción pueda crear diferentes representaciones.</p>
+                </div>
+            </div>
+            <hr>
+            <center>
+                <h2 style="color: #3498db;">Patrones de Comportamiento</h2>
+            </center>
+            <div class="padre">
+                <div class="info1">
+                    <img src="IMG/observer.png">
+                    <img src="IMG/strategy.png">
+                    <img src="IMG/command.png">
+                    <img src="IMG/iterator.png">
+                    <img src="IMG/chain-of-responsibility.png">
+                </div>
+                <div>
+                    <h3>Observer</h3>
+                    <p>Define una dependencia uno a muchos entre objetos, de modo que cuando un objeto cambia su estado, todos sus dependientes son notificados y actualizados automáticamente.
+                    </p>
+                    <h3 style="margin-top: 10px;">Strategy</h3>
+                    <p>Define una familia de algoritmos, encapsula cada uno y los hace intercambiables.</p>
+                    <h3 style="margin-top: 20px;">Command</h3>
+                    <p>Encapsula una solicitud como un objeto, permitiendo parametrizar clientes con operaciones, encolar solicitudes y soportar operaciones reversibles.</p>
+                    <h3 style="margin-top: 30px;">Iterator</h3>
+                    <p>Proporciona una forma de acceder secuencialmente a los elementos de un objeto agregado sin exponer su representación subyacente.</p>
+                    <h3 style="margin-top: 30px;">Chain of Responsibility</h3>
+                    <p>Permite que más de un objeto maneje una solicitud sin que el remitente conozca cuál objeto la está manejando.</p>
+                </div>
+                
+            </div>
+            <center>
+                <h2 style="color: #800080">Ejemplo Observer</h2>
+            </center>
+            <div class="padre">
+                <div class="info1">
+                    <pre>
+                        <code>
+#Se encarga de actualizar o notificar a los subscriptores
+class Publisher:
+    def _init_(this):
+        this._observers = []
+                            
+    def addSubscriber(this, newSubscriber):
+        this._observers.append(newSubscriber)
+                            
+    def removerSubscriber(this, subscriber):
+        this._observers.remove(subscriber)
+                            
+    def notifySubscribers(this, message):
+        #enviar mensaje:
+        for subscriber in this._observers :
+            subscriber.update(message)
+                            
+class Subscriber:
+    def Update(this, message):
+        pass
+                            
+class SubscriberType1(Subscriber):
+    def Update(this, message):
+    # return super().Update(message)
+        print(f"Subscriber1 recibio el mensaje {message}")
+                            
+class SubscriberType2(Subscriber):
+    def Update(this, message):
+        print(f"")
+                            
+class  PromocionNotifi(Subscriber):
+    def notifyProm(this, message):
+        pass
+                                              
+#metodo principal
+if _name_ == "_main_":
+    publisher1 = Publisher()
+    #crear subscriptores u observadores
+    observer1 = SubscriberType1()
+    observer2 = SubscriberType2()
+                            
+#agregar subscriptores
+    publisher1.addSubscriber(observer1)
+    publisher1.addSubscriber(observer2)
+                            
+    PromocionNotifi.addSubscriber(observer1)
+    PromocionNotifi.addSubscriber(observer2)
+                              
+    #notificar subscriptores
+    publisher1.notifySubscribers("Cheking my subscribers...")
+                        
+                        </code>
+                    </pre>
+                </div>
+        </div>
 
         </div>
+
+        <div class="info2c2">
+            <p style="margin-top: 60px;">Los patrones de diseño no abarcan diseños como listas enlazadas y tablas hash,
+                que se pueden codificar en clases y reutilizar tal cual</p>
+            <p>no son diseños complejos específicos del dominio para aplicaciones o subsistemas completos. describen
+                objetos y clases comunicándose y adaptándose para resolver problemas de diseño generales dentro de
+                contextos específicos.</p>
+            <p>para crear diseños orientados a objetos reutilizables. Identifica las clases e instancias participantes,
+                sus roles y colaboraciones, y la distribución de responsabilidades. Cada patrón de diseño aborda un
+                problema o tema específico de diseño orientado a objetos. Indica cuándo se aplica, si se puede aplicar
+                dadas otras restricciones de diseño y las consecuencias y compensaciones de su uso.</p>
+            <p> los patrones de diseño describen diseños orientados a objetos, se basan en soluciones prácticas
+                implementadas en lenguajes de programación orientados a objetos convencionales como Smalltalk y C++, en
+                lugar de lenguajes de programación procedurales (Pascal, C, Ada) o lenguajes orientados a objetos más
+                dinámicos (CLOS, Dylan, Self)</p>
+            <hr>
+            <center>
+                <h2 style="color: brown;">Patrones Estructurales</h2>
+            </center>
+            <div class="padre">
+                <div class="info1">
+                    <img src="IMG/adapter.png">
+                    <img src="IMG/bridge.png">
+                    <img src="IMG/composite.png">
+                    <img src="IMG/proxy.png">
+                </div>
+                <div>
+                    <h3>Adapter</h3>
+                    <p>Permite que interfaces incompatibles trabajen juntas.</p>
+                    <h3 style="margin-top: 40px;">Bridge</h3>
+                    <p>Separa una abstracción de su implementación, de modo que ambas puedan variar
+                        independientemente.</p>
+                    <h3 style="margin-top: 30px;">Composite</h3>
+                    <p>Compone objetos en estructuras de árbol para representar jerarquías parte-todo.</p>
+                    <h3 style="margin-top: 30px;">Proxy</h3>
+                    <p>Proporciona un sustituto o marcador de posición para controlar el acceso a un objeto.</p>
+                </div>
+            </div>
+            <center>
+                <h2 style="color: #800080">Ejemplo Adapter</h2>
+            </center>
+            <div class="padre">
+                <div class="info1">
+                    <pre>
+                        <code>
+class Audio_mp3:
+    def request(self) -> str:
+        return "Reproductor mp3 predeterminado"
+                        
+class Audio_wav:
+    def specific_request(self) -> str:
+        return "audio1.wav"
+                        
+class Adapter(Audio_mp3, Audio_wav):                   
+    def request(self) -> str:
+        string = self.specific_request().replace(".wav", ".mp3") 
+        return f"Modo de reproduccion cambiado a mp3: {string}"
+                        
+    def client_code(lector: "Audio_mp3") -> None:
+        print(lector.request())
+                        
+        if __name__ == "__main__":              
+            print("Reproduciendo audio mp3: ")
+            lector = Audio_mp3() #target
+            client_code(lector) 
+            print("\n")
+                        
+            adaptee = Audio_wav() #adaptada
+            print("Reproduciendo audio wav:")
+            print(f"Audio: {adaptee.specific_request()}")
+                        
+            print("Quiero cambiar el formarto: ")
+                            
+            adapter = Adapter()
+            client_code(adapter)
+                        </code>
+                    </pre>
+                </div>
+        </div>
+        <center>
+            <h2 style="color: #800080">Ejemplo Adapter-Strategy</h2>
+        </center>
+        <div class="padre">
+            <div class="info1">
+                <pre>
+                    <code>
+
+class Adaptee:
+    def request_trans(self):
+        return "Petición adaptada a la interfaz del cliente"
+                    
+# Clase CurrencyAdapter
+class CurrencyAdapter:
+    def __init__(self, tasa_conversion):
+    self.tasa_conversion = tasa_conversion
+                    
+    def convert(self, precio_pesos):
+    return precio_pesos * self.tasa_conversion
+                    
+class Strategy:
+    def execute(self):
+    pass
+                    
+# Estrategias concretas
+class PayUStrategy(Strategy):
+    def execute(self, precio_pesos):
+        return precio_pesos
+                    
+class PayPalStrategy(Strategy):
+    def execute(self, precio_pesos):
+        return precio_pesos
+                    
+class MercadoPagoStrategy(Strategy):  
+    def execute(self, precio_pesos):
+        return precio_pesos
+                    
+# Clase Context_Pago
+class Context_Pago:
+    def __init__(self, estrategia_pago, currency_adapter):
+        self.estrategia_pago = estrategia_pago
+        self.currency_adapter = currency_adapter
+                    
+    def execute_pago(self, precio_pesos):
+        precio_dolares = self.currency_adapter.convert(precio_pesos)
+        return f"El precio en dólares es: ${precio_dolares:.2f}"
+                    
+if __name__ == "__main__":
+    print("Menú de pago")
+    print("1. PayU")
+    print("2. PayPal")
+    print("3. MercadoPago")
+                    
+MetPago = input("Elija método de pago: ")
+Dinero = float(input("Ingrese el precio en pesos colombianos: "))
+                    
+        if MetPago == "1":
+            estrategia_pago = PayUStrategy()
+        elif MetPago == "2":
+            estrategia_pago = PayPalStrategy()
+        elif MetPago == "3":
+            estrategia_pago = MercadoPagoStrategy()
+        else:
+            print("Opción no válida")
+        exit()
+                    
+                    </code>
+                </pre>
+            </div>
+    </div>
     </div>
 </body>
 
